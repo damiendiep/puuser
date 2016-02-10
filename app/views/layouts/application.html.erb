@@ -20,8 +20,6 @@
 	<% end %>
 	</div>
 	<% flash.each do |name, msg| %>
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
 	<% content_tag :div, msg, id: "flash_#{name}" %>
 	<% end %>
 
