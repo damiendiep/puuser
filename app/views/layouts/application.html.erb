@@ -11,7 +11,7 @@
 <div id="container">
 	<div id="user_nav">
 	<% if user_signed_in? %>
-	Logged in as <strong><%= current_user.username %><%=image_tag(current_user.avatar, style: "width:90px; height:90px;") %></strong>.
+	Connecté en tant que <strong><%= current_user.username %><%=image_tag(current_user.avatar, style: "width:90px; height:90px;") %></strong>.
 	<%= link_to 'Edit profile', edit_user_registration_path %>
 	<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
 	<% else %>
