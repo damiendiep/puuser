@@ -11,7 +11,7 @@
 <div id="container">
 	<div id="user_nav">
 	<% if user_signed_in? %>
-	Connecté en tant que <strong><%= current_user.username %><%=image_tag(current_user.avatar, style: "width:90px; height:90px;") %></strong>.
+	Connecté en tant que <strong><%= current_user.username %><%=image_tag(current_user.avatar, style: "width:90px; height:90px;")if current_user.avatar? %></strong>.
 	<%= link_to 'Edit profile', edit_user_registration_path %>
 	<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
 	<% else %>
@@ -20,8 +20,7 @@
 	<% end %>
 	</div>
 	<% flash.each do |name, msg| %>
-	<% content_tag :div, msg, id: "flash_#{name}" %>
-	<% end %>
+		<% end %>
 
 <%= yield %>
 </div>

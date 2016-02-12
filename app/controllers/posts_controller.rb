@@ -11,11 +11,13 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+       @post_attachments = @post.post_attachments.all
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+       @post_attachment = @post.post_attachments.build
   end
 
   # GET /posts/1/edit
@@ -24,18 +26,22 @@ class PostsController < ApplicationController
 
   # POST /posts
   # POST /posts.json
-  def create
-    @post = Post.new(post_params.merge(:user_id => current_user.id))
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+def create
+  @post = Post.new(post_params.merge(:user_id => current_user.id))
+
+  respond_to do |format|
+    if @post.save
+      unless params[:post_attachments].nil?
+      params[:post_attachments]['picture'].each do |a|
+         @post_attachment = @post.post_attachments.create!(:picture => a, :post_id => @post.id)
+       end
       end
+      format.html { redirect_to @post, notice: 'Post was successfully created.' }
+    else
+      format.html { render action: 'new' }
     end
   end
+end
 
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
@@ -69,8 +75,9 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name, :content, :pict, :user_id)
+      params.require(:post).permit(:name, :content, :pict, :user_id,post_attachments_attributes: [:id, :post_id, :picture])
     end
+
 
     def check_autor
       if @post.user_id === current_user.id

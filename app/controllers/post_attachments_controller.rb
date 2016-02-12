@@ -24,32 +24,31 @@ class PostAttachmentsController < ApplicationController
   # POST /post_attachments
   # POST /post_attachments.json
   def create
-    @post_attachment = PostAttachment.new(post_attachment_params)
-
-    respond_to do |format|
-      if @post_attachment.save
-        format.html { redirect_to @post_attachment, notice: 'Post attachment was successfully created.' }
-        format.json { render :show, status: :created, location: @post_attachment }
-      else
+    @post_attachment = PostAttachment.new(post_attachment_params.merge(:post_id => @post.id))
+   respond_to do |format|
+     if @post.save
+      unless params[:post_attachments].nil?
+       params[:post_attachments]['picture'].each do |a|
+          @post_attachment = @post.post_attachments.create!(:picture => a, :post_id => @post.id)
+       end
+     else format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :ok, location: @post }
+     end
         format.html { render :new }
-        format.json { render json: @post_attachment.errors, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /post_attachments/1
   # PATCH/PUT /post_attachments/1.json
-  def update
-    respond_to do |format|
-      if @post_attachment.update(post_attachment_params)
-        format.html { redirect_to @post_attachment, notice: 'Post attachment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post_attachment }
-      else
-        format.html { render :edit }
-        format.json { render json: @post_attachment.errors, status: :unprocessable_entity }
-      end
-    end
+def update
+  respond_to do |format|
+    if @post_attachment.update(post_attachment_params)
+      format.html { redirect_to @post_attachment.post, notice: 'Post attachment was successfully updated.' }
+    end 
   end
+end
 
   # DELETE /post_attachments/1
   # DELETE /post_attachments/1.json

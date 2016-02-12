@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  resources :post_attachments
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
-  resources :posts
+  resources :posts do 
+    resources :post_attachments
+  end
+  resources :post_attachments
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
