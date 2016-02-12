@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   mount_uploader :avatar, AvatarUploader
-  has_many :posts
+  has_many :posts, dependent: :destroy
   validates_presence_of :username
   validates_uniqueness_of :username
 end
