@@ -9,9 +9,6 @@
   <%= @post.content %>
   <%= image_tag(@post.pict , style: "width:90px; heigth:90px;") %>
 </p>
-<p>
-	<strong>Created by:</strong>
-</p>
 <% @post_attachments.each do |p| %>
   <%= image_tag p.picture_url %>
 <% end %>
