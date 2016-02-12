@@ -101,18 +101,22 @@ body{
 }
 
 /* ===========================================   NAVBAR  ========================================= */
+.row {
+	margin-right: 0px;
+}
+
 #logo1{
     transition:all 0.9s ease;
     width: 150px;
-    margin-top: -5%;
+    margin-top: -6%;
     margin-left: 15%;
 }
-#containeracc{
-    transition:all 0.9s ease;
-      font-family: 'Josefin sans', serif;
+nav .container{
+    transition:all 0.4s ease;
+   font-family: 'Josefin sans', serif;
     width: 100%;
     background-color: white;
-    font-size: 1.6em;
+    font-size: 1.4em;
     height: 70px;
     opacity: 1;
     padding-top: 0%;
@@ -125,7 +129,7 @@ body{
 }
 
 nav .navbar-header {
-      font-family: 'Josefin sans', serif;
+   font-family: 'Josefin sans', serif;
 }
 .navbar-toggle{
   transition : all 0.9s ease;
@@ -152,24 +156,31 @@ nav button {
     margin-top: 2%;
 }
 #monmenu li a{
+    transition:all 0.3s ease;
     color: black;
+}
+#Loggin {
+  margin-top: 10px;
 }
 #monmenu a:hover{
     color: grey;
     opacity: 1;
-        border-bottom: 2px solid black;
 }
 #mainmenu{
-	box-shadow: 0px 1px 5px gray;
     background-color: white;
     transition: all 0.9s ease;
     opacity: 1;
 }
-#containeracc.sticky {
+nav .container.sticky {
    font-family: 'Josefin sans', serif;
     width: 100%;
+    background-color: white;
+    opacity: 0.9;
     height: 50px;
     padding-top: 0%;
+}
+#mainmenu.sticky{
+    opacity: 0.6;
 }
 #mainmenu:hover{
     opacity: 1
@@ -179,14 +190,9 @@ nav button {
 }
 #logo1.sticky{
     width: 125px;
-    margin-top: -8%;
+    margin-top: -12%;
     margin-left: 2%;
 }
-
-.row {
-	margin-right: 0px;
-}
-
 @media screen and (max-width: 444px){
   #logo1 {
     display: none;
