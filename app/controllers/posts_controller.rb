@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :check_autor, only: [:edit, :destroy, :update]
   # GET /posts
   # GET /posts.json
+
   def index
     @posts = Post.all
   end
@@ -75,12 +76,12 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name, :content, :pict, :user_id,post_attachments_attributes: [:id, :post_id, :picture])
+      params.require(:post).permit(:name, :content, :role, :user_id,post_attachments_attributes: [:id, :post_id, :picture])
     end
 
 
     def check_autor
-      if @post.user_id === current_user.id
+      if @post.user_id === current_user.id || current_user.role === 1
         true
       else
         redirect_to :root , alert: "Tu ne peux pas modifier cet article"
