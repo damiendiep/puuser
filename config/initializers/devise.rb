@@ -218,6 +218,7 @@ Devise.setup do |config|
   # Set this configuration to false if you want /users/sign_out to sign out
   # only the current scope. By default, Devise signs out all scopes.
   # config.sign_out_all_scopes = true
+config.secret_key = '8dfebcea7c3b11ff0a1c5eee5f1eb5d873276c64bfa9ec14f523bdef93f5f0412e52c8f8b39ad8c2175758c989b41f086b6659b20416e173371f4517a4c3e8cd'
 
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like
