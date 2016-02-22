@@ -206,13 +206,12 @@ Devise.setup do |config|
   #
   # Require the `devise-encryptable` gem when using anything other than bcrypt
   # config.encryptor = :sha512
-
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
   # config.scoped_views = false
-
+config.secret_key = '13571b21ac15c5ba5e5c1f0a9a7e25feaedbcc325478431780cd272213845c7c82a51379d3e49119b5e494eb8a7914305242615cc045b67722d6608c8a396f64' if Rails.env == 'production'
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
   # config.default_scope = :user
