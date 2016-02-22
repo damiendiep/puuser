@@ -17,7 +17,7 @@ set :repo_url, 'git@github.com:damiendiep/puuser.git'
 # set :format, :pretty
 
 # Default value for :log_level is :debug
-# set :log_level, :debug
+ set :log_level, :debug
 
 # Default value for :pty is false
 # set :pty, true
